@@ -22,8 +22,8 @@
     /* Modules */
     "baseUrl": ".",
     "paths": {
-      "src/*": ["./contrib/sdc-ide/web/src/*"],
-      "shared/*": ["./contrib/sdc-ide/shared/*"]
+      "web/*": ["./contrib/sdc-ide/web/*"],
+      /* "src/*": ["./contrib/sdc-ide/web/src/*"], */
     }
   },
   "include": ["src"],

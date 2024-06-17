@@ -12,25 +12,12 @@ export default defineConfig(({ command }) => ({
         port: 3001,
     },
     plugins: [
-        react({
-            babel: {
-                plugins: [
-                    'macros',
-                    [
-                        'babel-plugin-styled-components',
-                        {
-                            displayName: true,
-                            fileName: false,
-                        },
-                    ],
-                ],
-            },
-        }),
+        react(),
     ],
     resolve: {
         alias: [
+            { find: 'web', replacement: path.resolve(__dirname, './contrib/sdc-ide/web/') },
             { find: 'src', replacement: path.resolve(__dirname, './contrib/sdc-ide/web/src/') },
-            { find: 'shared', replacement: path.resolve(__dirname, './contrib/sdc-ide/shared/') },
         ],
     },
     define: {

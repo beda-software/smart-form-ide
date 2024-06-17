@@ -1,3 +1,6 @@
 [submodule "contrib/sdc-ide"]
 	path = contrib/sdc-ide
 	url = ../../beda-software/sdc-ide
+[submodule "packages/@beda.software/fhir-questionnaire"]
+	path = packages/@beda.software/fhir-questionnaire
+	url = ../../beda-software/fhir-questionnaire
