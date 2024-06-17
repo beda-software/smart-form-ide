@@ -1,0 +1,3 @@
+[submodule "contrib/sdc-ide"]
+	path = contrib/sdc-ide
+	url = ../../beda-software/sdc-ide
