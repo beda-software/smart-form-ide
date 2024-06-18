@@ -1,5 +1,16 @@
 # smart-form-ide
 
+## Live demo environment
+
+[https://ide.au-core.beda.software/AboriginalTorresStraitIslanderHealthCheck?client=sdc-ide](https://ide.au-core.beda.software/AboriginalTorresStraitIslanderHealthCheck?client=sdc-ide)
+
+Use 
+```
+username: admin   
+password: password
+``` 
+to authorize.
+
 ## Local development
 Setup dependencies
 ```
