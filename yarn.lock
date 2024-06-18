@@ -7,7 +7,7 @@
   resolved "https://registry.yarnpkg.com/@adobe/css-tools/-/css-tools-4.4.0.tgz#728c484f4e10df03d5a3acd0d8adcbbebff8ad63"
   integrity sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==
 
-"@aehrc/sdc-populate@^2.2.0":
+"@aehrc/sdc-populate@^2.2.2":
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/@aehrc/sdc-populate/-/sdc-populate-2.2.2.tgz#b6bf0ddda4a58b8ad5e37c8a7d344897a038e167"
   integrity sha512-5l8elf9Oj9bKCN6MPZ2L6PSXX6nX+gsOOvvVT7ZmukgeCiHKo53kUEl0YVNJG26PAXUTr+XK/Ex0MsNFtU+bGg==
@@ -19,12 +19,12 @@
     js-base64 "^3.7.7"
     moment "^2.29.4"
 
-"@aehrc/smart-forms-renderer@^0.33.1":
-  version "0.33.1"
-  resolved "https://registry.yarnpkg.com/@aehrc/smart-forms-renderer/-/smart-forms-renderer-0.33.1.tgz#e35588d5fafd5b5ef2d5861fc652826b85c95cae"
-  integrity sha512-ghpXHhxgKoeCJZk9V0Q3247DcnpX/AZ1cphOk378vY/c6cURhOWzwC3fssep8tuy5eCmICXhyrIGPr/cjJVEbQ==
+"@aehrc/smart-forms-renderer@^0.35.5":
+  version "0.35.6"
+  resolved "https://registry.yarnpkg.com/@aehrc/smart-forms-renderer/-/smart-forms-renderer-0.35.6.tgz#92cdae902c9378098bdf2ede789af5bfc4eb2af1"
+  integrity sha512-mQDDVZ2L0v70BMJZM+s+LOcCEyi0tcWqZftA2yPLjuDLEC+cDnbs+h+oJINCmpaTiO5rpYO0dbuf5yVKsiQh8w==
   dependencies:
-    "@aehrc/sdc-populate" "^2.2.0"
+    "@aehrc/sdc-populate" "^2.2.2"
     "@iconify/react" "^4.1.1"
     dayjs "^1.11.10"
     deep-diff "^1.0.2"
@@ -39,6 +39,7 @@
     react-dnd "^16.0.1"
     react-dnd-html5-backend "^16.0.1"
     react-markdown "^8.0.7"
+    style-to-object "^1.0.6"
     zustand "^4.5.2"
 
 "@alloc/quick-lru@^5.2.0":
@@ -8669,6 +8670,11 @@ inline-style-parser@0.2.2:
   resolved "https://registry.yarnpkg.com/inline-style-parser/-/inline-style-parser-0.2.2.tgz#d498b4e6de0373458fc610ff793f6b14ebf45633"
   integrity sha512-EcKzdTHVe8wFVOGEYXiW9WmJXPjqi1T+234YpJr98RiFYKHV3cdy1+3mkTE+KHTHxFFLH51SfaGOoUdW+v7ViQ==
 
+inline-style-parser@0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/inline-style-parser/-/inline-style-parser-0.2.3.tgz#e35c5fb45f3a83ed7849fe487336eb7efa25971c"
+  integrity sha512-qlD8YNDqyTKTyuITrDOffsl6Tdhv+UC4hcdAVuQsK4IMQ99nSgd1MIA/Q+jQYoh9r3hVUXhYh7urSRmXPkW04g==
+
 inquirer@^8.2.4:
   version "8.2.6"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-8.2.6.tgz#733b74888195d8d400a67ac332011b5fae5ea562"
@@ -14692,6 +14698,13 @@ style-to-object@^0.4.0:
   integrity sha512-HYNoHZa2GorYNyqiCaBgsxvcJIn7OHq6inEga+E6Ke3m5JkoqpQbnFssk4jwe+K7AhGa2fcha4wSOf1Kn01dMg==
   dependencies:
     inline-style-parser "0.1.1"
+
+style-to-object@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/style-to-object/-/style-to-object-1.0.6.tgz#0c28aed8be1813d166c60d962719b2907c26547b"
+  integrity sha512-khxq+Qm3xEyZfKd/y9L3oIWQimxuc4STrQKtQn8aSDRHb8mFgpukgX1hdzfrMEW6JCjyJ8p89x+IUMVnCBI1PA==
+  dependencies:
+    inline-style-parser "0.2.3"
 
 stylehacks@^5.1.1:
   version "5.1.1"
