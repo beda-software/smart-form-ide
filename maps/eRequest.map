@@ -1,0 +1,50 @@
+map "https://ide.au-core.beda.software/eRequest" = "extract-patient"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" as target
+
+group patientMap(source src : QuestionnaireResponse, target bundle : Bundle) {
+    src.item as item where linkId = 'tab-container' -> bundle.type = 'transaction';
+    src.item as item where linkId = 'tab-container' -> bundle.entry as entry then{
+        item.item as item where linkId = 'patient' -> entry.request as request then {
+           src.item -> request.method = 'POST';
+           };
+        item.item as item where linkId = 'patient' -> entry.resource = create("Patient") as patient then {
+            item.item as item where linkId = 'patient-name' -> patient.name = create("HumanName") as name then {
+                item.linkId -> name.text = (%item.answer.value);
+            };
+            item.item as item where linkId = 'patient-dob' -> patient.birthDate = (%item.answer.value);
+            item.item as item where linkId = 'patient-sex' -> patient.extension = create ("Extension") as SexAssignedAtBirth then {
+                item.answer -> SexAssignedAtBirth.url = "http://hl7.org/fhir/StructureDefinition/individual-recordedSexOrGender";
+                item.answer -> SexAssignedAtBirth.extension = create("Extension") as extension then {
+                    item.answer -> extension.url = "value";
+                    item.answer -> extension.value = create("CodeableConcept") as value then {
+                       item.answer -> value.text = (%item.answer.value.display); 
+                       item.answer -> value.coding = (%item.answer.value);
+                    };
+                };
+                item.answer -> SexAssignedAtBirth.extension = create("Extension") as extension then {
+                    item.answer -> extension.url = "type";
+                    item.answer -> extension.value = create("CodeableConcept") as value then {
+                       item.answer -> value.text = "Sex at Birth";
+                       item.answer -> value.coding = create("Coding") as coding then {
+                        item.answer -> coding.system = "http://snomed.info/sct";
+                        item.answer -> coding.code = "1515311000168102";
+                       };
+                    };
+                };
+            };
+        };
+    };
+
+    src.item as item where linkId = 'tab-container' -> bundle.entry as entry then{
+        item.item as item where linkId = 'pathology' -> entry.request as request then {
+           src.item -> request.method = 'POST';
+        };
+        item.item as item where linkId = 'pathology' -> entry.resource = create("ServiceRequest") as resource then {
+           src.item -> resource.code = create("CodeableConcept") as code then {
+              src.item -> code.text = (%item.repeat(item).where(linkId='pathology-service-testdetails-testname').answer.value);
+           };
+        };
+    };
+};
