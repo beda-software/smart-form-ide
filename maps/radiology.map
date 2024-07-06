@@ -1,0 +1,38 @@
+map "https://ide.au-core.beda.software/RadiologyRequestForm" = "extract-service-request"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" as target
+
+group serviceRequestMap(source src : QuestionnaireResponse, target bundle : Bundle) {
+    src.item as item where linkId = 'radiology-service' -> bundle.entry as entry then{
+        item.linkId ->  entry.request as request then {
+            item.linkId -> request.method = 'POST';
+        };
+        item.linkId ->  entry.resource = create("ServiceRequest") as service then {
+            item.linkId -> service.requisition = create("Identifier") as requisition then {
+                item.linkId -> requisition.type as type then {
+                    item.linkId -> type.coding = create("Coding") as coding then {
+                        item.linkId -> coding.code = "PGN";
+                        item.linkId -> coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203";
+                        item.linkId -> coding.display = "Placer Group Number";
+                    };
+                };
+            };
+            item.linkId -> service.status = 'draft';
+            item.linkId -> service.intent = 'order';
+            item.linkId -> service.category = create("CodeableConcept") as category then {
+                item.linkId -> category.text = "Imaging";
+                item.linkId -> category.coding = create("Coding") as coding then {
+                    item.linkId -> coding.code = "363679005";
+                    item.linkId -> coding.system = "http://snomed.info/sct";
+                    item.linkId -> coding.display = "Imaging";
+                };
+            item.linkId -> service.code = create("CodeableConcept") as code then {
+                    item.linkId -> code.text = (%item.repeat(item).where(linkId='radiology-service-examination-procedure').answer.value.display);
+                    item.linkId -> code.coding = (%item.repeat(item).where(linkId='radiology-service-examination-procedure').answer.value);
+                };
+            item.linkId -> service.authoredOn = (now());
+            };
+        };
+    };
+};
