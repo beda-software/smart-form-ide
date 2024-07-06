@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "resources"
+version = "0.1.0"
+description = ""
+authors = ["Ilya Beda <ir4y.ix@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+requests = "^2.32.3"
+
+[tool.poetry.group.dev.dependencies]
+anaconda = "^0.0.1.1"
+jedi = "^0.19.1"
+black= "*"
+isort = "*"
+flake8 = "*"
+pep8 = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
