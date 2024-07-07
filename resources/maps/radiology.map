@@ -20,6 +20,7 @@ group serviceRequestMap(source src : QuestionnaireResponse, target bundle : Bund
             };
             item.linkId -> service.status = 'draft';
             item.linkId -> service.intent = 'order';
+            item.linkId -> service.priority = (%item.repeat(item).where(linkId='radiology-service-examination-priority').answer.value.code);
             item.linkId -> service.category = create("CodeableConcept") as category then {
                 item.linkId -> category.text = "Imaging";
                 item.linkId -> category.coding = create("Coding") as coding then {
@@ -27,11 +28,22 @@ group serviceRequestMap(source src : QuestionnaireResponse, target bundle : Bund
                     item.linkId -> coding.system = "http://snomed.info/sct";
                     item.linkId -> coding.display = "Imaging";
                 };
+            };
             item.linkId -> service.code = create("CodeableConcept") as code then {
-                    item.linkId -> code.text = (%item.repeat(item).where(linkId='radiology-service-examination-procedure').answer.value.display);
-                    item.linkId -> code.coding = (%item.repeat(item).where(linkId='radiology-service-examination-procedure').answer.value);
-                };
+                item.linkId -> code.text = (%item.repeat(item).where(linkId='radiology-service-examination-procedure').answer.value.display);
+                item.linkId -> code.coding = (%item.repeat(item).where(linkId='radiology-service-examination-procedure').answer.value);
+            };
             item.linkId -> service.authoredOn = (now());
+            item.linkId -> service.bodySite = create("CodeableConcept") as code then {
+                item.linkId -> code.text = (%item.repeat(item).where(linkId='radiology-service-examination-bodysite').answer.value.display);
+                item.linkId -> code.coding = (%item.repeat(item).where(linkId='radiology-service-examination-bodysite').answer.value);
+            };
+            item.linkId -> service.reasonCode = create("CodeableConcept") as code then {
+                item.linkId -> code.text = (%item.repeat(item).where(linkId='radiology-service-clinicalindication').answer.value.display);
+                item.linkId -> code.coding = (%item.repeat(item).where(linkId='radiology-service-clinicalindication').answer.value);
+            };
+            item.linkId -> service.note = create("Annotation") as annotation then {
+                item.linkId -> annotation.text = (%item.repeat(item).where(linkId='radiology-service-comment').answer.value);
             };
         };
     };
