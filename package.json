@@ -11,6 +11,7 @@
     "dependencies": {
         "@aehrc/smart-forms-renderer": "^0.35.5",
         "@beda.software/fhir-questionnaire": "1.0.0",
+        "@aehrc/sdc-populate": "2.2.7",
         "@beda.software/fhir-react": "^1.8.6",
         "@beda.software/remote-data": "^1.1.3",
         "@codemirror/commands": "^6.2.4",

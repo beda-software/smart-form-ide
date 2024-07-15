@@ -7,6 +7,18 @@
   resolved "https://registry.yarnpkg.com/@adobe/css-tools/-/css-tools-4.4.0.tgz#728c484f4e10df03d5a3acd0d8adcbbebff8ad63"
   integrity sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==
 
+"@aehrc/sdc-populate@2.2.7":
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/@aehrc/sdc-populate/-/sdc-populate-2.2.7.tgz#9db72c0ec0f12bddd02c2bd95cdc4f8cd28a99e1"
+  integrity sha512-C+clzidRNuBQyRU2ELT62GbzHwRyHAO6ATVT0av06+BYBo8eznFlrXeWFF6wpPRq9bIwOEb8Desd77vrHGGm7A==
+  dependencies:
+    dayjs "^1.11.10"
+    fhir-sdc-helpers "^0.1.0"
+    fhirclient "^2.5.2"
+    fhirpath "3.11.0"
+    js-base64 "^3.7.7"
+    moment "^2.30.1"
+
 "@aehrc/sdc-populate@^2.2.2":
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/@aehrc/sdc-populate/-/sdc-populate-2.2.2.tgz#b6bf0ddda4a58b8ad5e37c8a7d344897a038e167"
@@ -7592,6 +7604,17 @@ fhirclient@^2.5.2:
     isomorphic-webcrypto "^2.3.8"
     jose "^4.6.0"
     js-base64 "^3.7.2"
+
+fhirpath@3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/fhirpath/-/fhirpath-3.11.0.tgz#5f506993f5a8641b45bc5d50fc60304eed14e288"
+  integrity sha512-BfCxdzwD9/Eb/iur7ETpaT1pq4KcHahEG0WIjzTO1jm9ImiDlcyvj998JvBCQbf+5AQmwZKglbcWPM7Gm56uZQ==
+  dependencies:
+    "@lhncbc/ucum-lhc" "^5.0.0"
+    antlr4 "~4.9.3"
+    commander "^2.18.0"
+    date-fns "^1.30.1"
+    js-yaml "^3.13.1"
 
 fhirpath@^3.5.0, fhirpath@^3.7.1:
   version "3.13.3"
