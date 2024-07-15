@@ -4,12 +4,18 @@ uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" as target
 
 group serviceRequestMap(source src : QuestionnaireResponse, target bundle : Bundle) {
+    src.item -> bundle.type = "transaction";
     src.item as item where linkId = 'radiology-service' -> bundle.entry as entry then{
         item.linkId ->  entry.request as request then {
             item.linkId -> request.method = 'POST';
         };
         item.linkId ->  entry.resource = create("ServiceRequest") as service then {
             item.linkId -> service.requisition = create("Identifier") as requisition then {
+                item.linkId -> requisition.system = "https://smartforms.csiro.au/id/DiagnosticOrder";
+                item.linkId -> requisition.value = (%src.repeat(item).where(linkId='radiology-order-number').answer.value);
+                item.linkId -> requisition.assigner as assigner then {
+                    item.linkId -> assigner.display = "AEHRC CSIRO";
+                };	
                 item.linkId -> requisition.type as type then {
                     item.linkId -> type.coding = create("Coding") as coding then {
                         item.linkId -> coding.code = "PGN";
@@ -45,6 +51,16 @@ group serviceRequestMap(source src : QuestionnaireResponse, target bundle : Bund
             item.linkId -> service.note = create("Annotation") as annotation then {
                 item.linkId -> annotation.text = (%item.repeat(item).where(linkId='radiology-service-comment').answer.value);
             };
+            item.linkId -> service.note = create("Annotation") as annotation then {
+                item.linkId -> annotation.text = (%item.repeat(item).where(linkId='radiology-service-clinicalnotes').answer.value);
+            };
+            item.linkId -> service.requester as requester then {
+                item.linkId -> requester.reference = (%src.repeat(item).where(linkId='radiology-order-requesterreference').answer.value);
+                item.linkId -> requester.display = (%src.repeat(item).where(linkId='radiology-order-requesterdisplay').answer.value);
+            };
+            src.subject -> service.subject = (%src.subject);
+            item.linkId -> service.occurrence = (%src.repeat(item).where(linkId='radiology-service-examination-timing').answer.value);
+
         };
     };
 };
