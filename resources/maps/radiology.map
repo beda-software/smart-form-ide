@@ -39,7 +39,7 @@ group serviceRequestMap(source src : QuestionnaireResponse, target bundle : Bund
                 item.linkId -> code.text = (%item.repeat(item).where(linkId='radiology-service-examination-procedure').answer.value.display);
                 item.linkId -> code.coding = (%item.repeat(item).where(linkId='radiology-service-examination-procedure').answer.value);
             };
-            item.linkId -> service.authoredOn = (now());
+            item.linkId -> service.authoredOn = (now().toString().substring(0,10));
             item.linkId -> service.bodySite = create("CodeableConcept") as code then {
                 item.linkId -> code.text = (%item.repeat(item).where(linkId='radiology-service-examination-bodysite').answer.value.display);
                 item.linkId -> code.coding = (%item.repeat(item).where(linkId='radiology-service-examination-bodysite').answer.value);
